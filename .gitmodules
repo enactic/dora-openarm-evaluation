@@ -16,3 +16,12 @@
 [submodule "nodes/dora-openarm-docker-policy-server"]
 	path = nodes/dora-openarm-docker-policy-server
 	url = https://github.com/enactic/dora-openarm-docker-policy-server.git
+[submodule "nodes/dora-openarm"]
+	path = nodes/dora-openarm
+	url = https://github.com/enactic/dora-openarm.git
+[submodule "nodes/dora-openarm-evaluation-ui"]
+	path = nodes/dora-openarm-evaluation-ui
+	url = https://github.com/enactic/dora-openarm-evaluation-ui.git
+[submodule "nodes/dora-opencv-image-splitter"]
+	path = nodes/dora-opencv-image-splitter
+	url = https://github.com/enactic/dora-opencv-image-splitter.git
