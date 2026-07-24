@@ -25,3 +25,12 @@
 [submodule "nodes/dora-opencv-image-splitter"]
 	path = nodes/dora-opencv-image-splitter
 	url = https://github.com/enactic/dora-opencv-image-splitter.git
+[submodule "nodes/dora-openarm-inference-controller"]
+	path = nodes/dora-openarm-inference-controller
+	url = https://github.com/enactic/dora-openarm-inference-controller.git
+[submodule "nodes/dora-openarm-classifier"]
+	path = nodes/dora-openarm-classifier
+	url = https://github.com/enactic/dora-openarm-classifier.git
+[submodule "nodes/dora-openarm-dataset-recorder"]
+	path = nodes/dora-openarm-dataset-recorder
+	url = https://github.com/enactic/dora-openarm-dataset-recorder.git
