@@ -15,9 +15,9 @@ Real Robot Example will be added in the near future. Stay tuned!
 set up the local policy server:
 
 ```bash
-uv venv .venv_server
+uv venv .venv_server -p 3.12
 source .venv_server/bin/activate
-uv pip install lerobot==0.3.3 pyarrow
+uv pip install lerobot==0.6.1 pyarrow
 # uv pip install torch torchvision torchaudio --torch-backend=cu128 --upgrade  # for CUDA 12.8
 python src/local_policy_server.py /dev/shm/policy-server.socket
 ```
@@ -31,7 +31,6 @@ source .venv/bin/activate
 dora build dataflow-local-inference.yaml --uv
 SOCKET=/dev/shm/policy-server.socket dora run dataflow-local-inference.yaml --uv
 ```
-
 
 #### Docker Inference
 

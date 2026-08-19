@@ -22,7 +22,7 @@ COPY --from=uv /uv /uvx /bin/
 COPY src/ src/
 
 RUN uv venv .venv 
-RUN uv pip install lerobot==0.3.3 pyarrow
+RUN uv pip install lerobot==0.6.1 pyarrow
 # For CUDA 12.8, use the following line instead to install PyTorch with CUDA support. Make sure to match the CUDA version with your host machine.
 #RUN uv pip install torch torchvision --torch-backend=cu128 --upgrade
 
@@ -30,11 +30,12 @@ ENV VIRTUAL_ENV=/project/.venv \
     PATH="/project/.venv/bin:$PATH"
 
 RUN python -c "\
-from lerobot.policies.pretrained import PreTrainedConfig; \
-from lerobot.policies.factory import get_policy_class; \
+from lerobot.configs import PreTrainedConfig; \
+from lerobot.policies.factory import get_policy_class, make_pre_post_processors; \
 cfg = PreTrainedConfig.from_pretrained('enactic/act-openarm-2-cell-pick_up_cube_mujoco'); \
 cfg.pretrained_path = 'enactic/act-openarm-2-cell-pick_up_cube_mujoco'; \
-get_policy_class(cfg.type).from_pretrained(config=cfg, pretrained_name_or_path=cfg.pretrained_path)" \
+get_policy_class(cfg.type).from_pretrained(config=cfg, pretrained_name_or_path=cfg.pretrained_path); \
+make_pre_post_processors(cfg, pretrained_path=cfg.pretrained_path, preprocessor_overrides={'device_processor': {'device': cfg.device}})" \
 && python -c "import torchvision; torchvision.models.resnet18(weights=torchvision.models.ResNet18_Weights.DEFAULT)"
 
 ENV HF_HUB_OFFLINE=1
