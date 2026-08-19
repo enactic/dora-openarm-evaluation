@@ -15,9 +15,9 @@ Real Robot Example will be added in the near future. Stay tuned!
 set up the local policy server:
 
 ```bash
-uv venv .venv_server
+uv venv .venv_server -p 3.12
 source .venv_server/bin/activate
-uv pip install lerobot==0.3.3 pyarrow
+uv pip install lerobot==0.6.1 pyarrow
 # uv pip install torch torchvision torchaudio --torch-backend=cu128 --upgrade  # for CUDA 12.8
 python src/local_policy_server.py /dev/shm/policy-server.socket
 ```
@@ -31,33 +31,6 @@ source .venv/bin/activate
 dora build dataflow-local-inference.yaml --uv
 SOCKET=/dev/shm/policy-server.socket dora run dataflow-local-inference.yaml --uv
 ```
-
-
-#### Local Inference with LeRobot 0.6.1
-
-`src/local_policy_server_lerobot06.py` serves
-[`k1000dai/act-openarm-2-cell-pick_up_cube_mujoco`](https://huggingface.co/k1000dai/act-openarm-2-cell-pick_up_cube_mujoco)
-with LeRobot 0.6.1. That policy takes all five cameras (ceiling, head left,
-head right, wrist left, wrist right). Since LeRobot 0.4, normalization lives in
-the pre/post-processor pipelines shipped alongside the weights instead of inside
-the policy, so the server loads those pipelines as well.
-
-set up the local policy server:
-
-```bash
-uv venv .venv_server -p 3.12
-source .venv_server/bin/activate
-uv pip install lerobot==0.6.1 pyarrow
-# uv pip install torch torchvision torchaudio --torch-backend=cu128 --upgrade  # for CUDA 12.8
-python src/local_policy_server_lerobot06.py /dev/shm/policy-server.socket
-```
-
-in another terminal, run the same dataflow as above
-
-```bash
-SOCKET=/dev/shm/policy-server.socket dora run dataflow-local-inference.yaml --uv
-```
-
 
 #### Docker Inference
 
